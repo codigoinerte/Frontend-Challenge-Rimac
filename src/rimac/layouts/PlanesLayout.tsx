@@ -1,7 +1,11 @@
-import { Outlet } from "react-router"
+import { Outlet, useNavigate } from "react-router"
 import { GoBack, Header, Stepper } from "../components"
 
 export const PlanesLayout = () => {
+
+    const navigate = useNavigate();
+
+
     return (
         <div className="flex flex-col flex-1 w-full justify-center items-center">
             {/* Header */}
@@ -9,7 +13,7 @@ export const PlanesLayout = () => {
 
             <Stepper />
 
-            <GoBack />
+            <GoBack onClick={() => navigate(-1)}/>
             
             {/* Body */}
             <main className="flex-1">
