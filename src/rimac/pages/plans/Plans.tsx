@@ -53,8 +53,8 @@ export const Plans = () => {
 
   return (
     <>
-      <div className="max-w-[700px] mb-8 text-center mx-auto">
-        <h1 className="mb-2 font-lat text-[48px] font-bold leading-12 tracking-[-0.6px] text-[#141938] w-full">{user.name} ¿Para quién deseas cotizar?</h1>
+      <div className="max-w-[650px] mb-8 text-center mx-auto">
+        <h1 className="mb-2 font-lato text-[48px] font-bold leading-12 tracking-[-0.6px] text-[#141938] w-full">{user.name} ¿Para quién deseas cotizar?</h1>
         <p className="font-lato text-[16px] leading-7 tracking-[0.1px] font-normal">Selecciona la opción que se ajuste más a tus necesidades.</p>
       </div>
 
