@@ -17,7 +17,7 @@ export const Step:React.FC<Props> = ({isActive, isDisabled = false, number, labe
                     {label}
                 </button>)
 
-    return (<Link to={route} className={`font-bold font-lato flex flex-row gap-4 ${classNameStep} ${className} ${isActive ? "cursor-pointer" : "cursor-default"}`}>
+    return (<Link to={route} className={`font-bold font-lato flex flex-row gap-4 ${classNameStep} ${className} cursor-pointer`}>
                 <span className={`flex rounded-full w-6 h-6 justify-center items-center text-[12px] font-bold tracking-[0.4px] font-lato! ${classNameNumber}`}>{number}</span>
                 {label}
             </Link>)
