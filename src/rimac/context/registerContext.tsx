@@ -7,6 +7,7 @@ type User = {
     documentType: string;
     document: string;
     phone: string;
+    age: number;
 }
 
 interface registerContextProps {
