@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 export interface PlansResponse {
     list: Plan[];
 }
@@ -7,4 +9,17 @@ export interface Plan {
     price:       number;
     description: string[];
     age:         number;
+}
+
+export interface targetAudience {
+    id: selectPlanType;
+    title: string;
+    description: string;
+    icon: JSX.Element;
+    isSelected: boolean;
+}
+export interface paramsPlanSelector {
+    name: string;
+    price: string;
+    discount: string;
 }
