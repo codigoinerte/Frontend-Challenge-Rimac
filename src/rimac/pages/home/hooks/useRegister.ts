@@ -1,5 +1,6 @@
 import { RegisterContext } from "@/rimac/context/registerContext";
 import { use, useState, type FormEvent } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 type Inputs = {
     documentType: boolean | null;
@@ -29,6 +30,9 @@ export const useRegister = () => {
     } as Inputs)
 
     const { setUser } = use(RegisterContext);
+
+    const navigate = useNavigate();
+
     
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -65,7 +69,9 @@ export const useRegister = () => {
                 documentType,
                 document,
                 phone,
-            })  
+            });
+
+            navigate('/plans');
             
         } catch {
             toast.error('Hubo un error al registrarte, intenta de nuevo más tarde.');
