@@ -29,11 +29,11 @@ export const Rimac = () => {
             <img 
               src="/images/hero-home.png" 
               alt="hero" 
-              title="hero" 
-              className="w-full max-w-[480px] rounded-3xl h-auto self-start"
+              title="hero"
+              className="w-full sm:w-[350px] lg:w-auto rounded-3xl h-auto self-start flex-1 max-w-[480px]"
             />
 
-            <div className="ms-32 max-w-[351px]">
+            <div className="ms-18 md:ms-8 lg:ms-32 max-w-[351px]">
               <span className="py-1 px-2 rounded-sm font-bold text-[14px] leading-4 tracking-[0.4px] text-[#03050F] bg-[linear-gradient(86.01deg,#00F4E2_0%,#00FF7F_100%)] h-6 inline-flex items-center mb-4">
                   Seguro Salud Flexible
               </span>
@@ -108,7 +108,7 @@ export const Rimac = () => {
 
         {/* Footer */}
         <footer className="w-full bg-[#03050F] z-1">
-          <div className="max-w-[1120px] m-auto flex flex-row justify-between items-center my-8">
+          <div className="max-w-[1120px] m-auto flex flex-row justify-between items-center py-8 px-6">
             <img src="/images/logo-dark.svg" alt="Rimac" title="Rimac" />
 
             <p className="text-[#F8F9FF] text-[14px] leading-4 font-normal">&copy; {new Date().getFullYear()} RIMAC Seguros y Reaseguros.</p>
@@ -116,8 +116,8 @@ export const Rimac = () => {
         </footer>
 
         <div className="absolute left-0 right-0 top-0 bottom-0 w-full z-[-1] flex justify-between flex-row">
-          <img src="/images/blur-asset-left.svg" alt="blur-asset-left" />
-          <img src="/images/blur-asset-right.svg" alt="blur-asset-right" />
+          <img src="/images/blur-asset-left.svg" alt="blur-asset-left" className="max-w-[50%]"/>
+          <img src="/images/blur-asset-right.svg" alt="blur-asset-right" className="max-w-[50%]"/>
         </div>
     </div>
   )
