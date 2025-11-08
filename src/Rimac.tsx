@@ -1,15 +1,10 @@
-import { Home } from "./rimac/pages"
-import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-]);
+import { RegisterContextProvider } from "./rimac/context/registerContext";
+import { appRouter } from "./rimac/router/app.router";
 
 export const Rimac = () => {
 
-  return <RouterProvider router={router} />
+  return  <RegisterContextProvider>
+            <RouterProvider router={appRouter} />
+          </RegisterContextProvider>
 }
