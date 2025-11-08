@@ -5,7 +5,7 @@ import { RegisterContext } from "@/rimac/context/registerContext"
 import { ArrowBack, Person, PersonPlus } from "@/rimac/icons"
 import { use, useCallback, useEffect, useState } from "react"
 import { CardPeople, Plan } from "./components";
-import type { Plan as PlanType, PlansResponse } from './types/types';
+import type { Plan as PlanType, PlansResponse, selectPlanType } from './types/types';
 
 import '@/rimac/styles/swiper.min.css';
 import '@/rimac/styles/pagination.min.css';
@@ -44,11 +44,10 @@ export const Plans = () => {
 
 
   useEffect(() => {
-    
     (async ()=> {
       try {
         const plans = await getPlans();
-        setPlans(plans.list);
+        setPlans(plans.list.filter((plan) => plan.age >= user.age));
       } catch {
         console.log("Fallo en la petición de planes");
       }
@@ -92,7 +91,7 @@ export const Plans = () => {
         >
           {
             plans.length > 0 &&
-            plans.map((plan) => <SwiperSlide key={plan.name} className='flex-1 h-auto!'><Plan {...plan} /></SwiperSlide>)
+            plans.map((plan) => <SwiperSlide key={plan.name} className='flex-1 h-auto!'><Plan {...plan} selectedCard={selectedCard as selectPlanType} /></SwiperSlide>)
           }
         </Swiper>
          {/* Controles personalizados debajo */}
