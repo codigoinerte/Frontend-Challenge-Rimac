@@ -34,6 +34,7 @@ export const Plans = () => {
 
   const [plans, setPlans] = useState<PlanType[]>([])
   const [selectedCard, setSelectedCard] = useState('');
+  const [showPagination, setShowPagination] = useState(false);
   const { user } = use(RegisterContext)
 
   const getPlans = useCallback(async ():Promise<PlansResponse> => {
@@ -56,7 +57,6 @@ export const Plans = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
 
   return (
     <>
@@ -65,7 +65,7 @@ export const Plans = () => {
         <p className="font-lato text-[16px] leading-7 tracking-[0.1px] font-normal">Selecciona la opción que se ajuste más a tus necesidades.</p>
       </div>
 
-      <div className="flex flex-row gap-8 mb-5 justify-center">
+      <div className="flex flex-col md:flex-row gap-8 mb-5 justify-center">
         {
           cards.map(card => (<CardPeople key={card.id} {...card} onClick={() => setSelectedCard(card.id)} selectedCard={selectedCard} />))
         }
@@ -86,7 +86,26 @@ export const Plans = () => {
           modules={[Pagination, Navigation]}
           className="flex px-10! py-10!"
           direction='horizontal'
-          onSwiper={(swiper) => console.log('Swiper inicializado', swiper)}
+          breakpoints={{
+             
+              // when window width is >= 320px
+              0: {
+                slidesPerView: 1
+              },             
+              // when window width is >= 640px
+              768: {
+                slidesPerView: 2
+              },
+              // when window width is >= 991px
+              991: {
+                slidesPerView: 3
+              }
+  
+          }}    
+          onSwiper={(swiper) => {
+            console.log(swiper.pagination);
+            setShowPagination(swiper.pagination.bullets.length >0)
+          }}
           onSlideChange={() => console.log('Slide cambiado')}          
         >
           {
@@ -95,15 +114,19 @@ export const Plans = () => {
           }
         </Swiper>
          {/* Controles personalizados debajo */}
-        <div className="custom-controls">
-          <button className="custom-prev">
-            <ArrowBack width={32} height={32}/>
-          </button>
-          <div className="custom-pagination font-lato"></div>
-          <button className="custom-next rotate-180">
-            <ArrowBack width={32} height={32}/>
-          </button>
-        </div>
+        {
+          showPagination && (
+            <div className="custom-controls">
+              <button className="custom-prev">
+                <ArrowBack width={32} height={32}/>
+              </button>
+              <div className="custom-pagination font-lato"></div>
+              <button className="custom-next rotate-180">
+                <ArrowBack width={32} height={32}/>
+              </button>
+            </div>
+          )
+        }
         
       </div>
     </>
