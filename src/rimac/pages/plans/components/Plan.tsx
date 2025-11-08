@@ -2,6 +2,7 @@ import React from 'react'
 import type { Plan as PlanType } from '../types/types'
 import { currencyConvert } from '@/rimac/helpers/currencyConvert'
 import { Clinic, Home } from '@/rimac/icons'
+import { ReplaceTextToBold } from '@/rimac/helpers/ReplaceTextToBold'
 
 export const Plan:React.FC<PlanType> = ({ price, name, description}) => {
     return (
@@ -24,7 +25,7 @@ export const Plan:React.FC<PlanType> = ({ price, name, description}) => {
                 {
                 description.map(item => (
                     <li key={item} className='font-lato font-normal text-[16px] leading-7 tracking-[0.1px] mb-6 '>
-                    {item}
+                    {ReplaceTextToBold(item)}
                     </li>
                 ))
                 }
