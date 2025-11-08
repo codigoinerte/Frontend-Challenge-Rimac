@@ -1,10 +1,15 @@
 import React from 'react'
-import type { Plan as PlanType } from '../types/types'
+import type { Plan as PlanType, selectPlanType } from '../types/types'
 import { currencyConvert } from '@/rimac/helpers/currencyConvert'
 import { Clinic, Home } from '@/rimac/icons'
 import { ReplaceTextToBold } from '@/rimac/helpers/ReplaceTextToBold'
 
-export const Plan:React.FC<PlanType> = ({ price, name, description}) => {
+interface PlanTypeProps extends PlanType{
+    selectedCard:selectPlanType;
+}
+
+export const Plan:React.FC<PlanTypeProps> = ({ selectedCard, price, name, description}) => {
+    const priceWithDiscount = Number(price)-(Number(price)*0.05);
     return (
         <div key={name} className='shadow-[0px_1px_32px_0px_#AEACF359] px-8 pt-[68px] pb-6 rounded-3xl md:max-w-[288px] w-[288px] flex-1 h-full flex flex-col'>
             <div className='flex flex-row justify-between relative'>
@@ -18,7 +23,12 @@ export const Plan:React.FC<PlanType> = ({ price, name, description}) => {
                 <div>
                     <h3 className='font-lato text-[24px] leading-8 font-black text-[#141938]'>{name}</h3>
                     <h4 className='font-lato text-[12px] leading-2 font-black text-[#7981B2] mt-6 mb-1'>COSTO DEL PLAN</h4>
-                    <p className='font-lato text-[20px] leading-7 font-black text-[#141938] tracking-[-0.2px]'>{currencyConvert(price)}</p>
+                    {
+                        selectedCard == "para-alguien" && (
+                            <h4 className='font-lato line-through font-normal text-[14px] leading-5 text-[#7981B2] inline-block'>{currencyConvert(priceWithDiscount)} al mes</h4>
+                        )
+                    }
+                    <p className='font-lato text-[20px] leading-7 font-black text-[#141938] tracking-[-0.2px]'>{currencyConvert(price)} al mes</p>
                 </div>
                 <div className='self-start'>
                     {
