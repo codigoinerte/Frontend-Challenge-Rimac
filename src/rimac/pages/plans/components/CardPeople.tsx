@@ -29,10 +29,10 @@ export const CardPeople:React.FC<Props> = ({id, title, description, icon, onClic
                     )}
                     </div>
             </div>
-            <div className="mb-[11px]">
+            <div className="max-md:flex max-md:flex-row max-md:gap-2">
                 {icon}
+                <h2 className="font-lato font-bold text-[20px] leading-7 tracking-[-0.2px] text-[#141938] text-left mb-2 mt-[11px]">{title}</h2>
             </div>
-            <h2 className="font-lato font-bold text-[20px] leading-7 tracking-[-0.2px] text-[#141938] text-left mb-2">{title}</h2>
             <p className="font-lato font-normal text-[12px] leading-5 tracking-[0.2px] text-[#141938] text-left">{description}</p>
         </button>
     )

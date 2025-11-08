@@ -20,10 +20,11 @@ export const Plans = () => {
 
   const navigate = useNavigate();
 
-  const [plans, setPlans] = useState<PlanType[]>([])
-  const [selectedCard, setSelectedCard] = useState<selectPlanType | ''>('');
-  const [showPagination, setShowPagination] = useState(false);
   const { user, setPlanToUser } = use(RegisterContext)
+
+  const [plans, setPlans] = useState<PlanType[]>([])
+  const [selectedCard, setSelectedCard] = useState<selectPlanType | ''>(user.targetPeopleId || '');
+  const [showPagination, setShowPagination] = useState(false);
 
   const getPlans = useCallback(async ():Promise<PlansResponse> => {
     const response = await fetch(`${VITE_API}/plans.json`);
@@ -47,15 +48,20 @@ export const Plans = () => {
   }, [])
 
   const handleAddPlan = ({ name, price }:paramsPlanSelector) => {
-    setPlanToUser(selectedCard=="para-mi", name, price);
+    setPlanToUser({
+      isForMe: selectedCard=="para-mi", 
+      planName: name,
+      planPrice: price,
+      targetPeopleId: selectedCard,
+    });
     navigate("/planes/resumen");
   }
 
   return (
     <>
       <div className="max-w-[650px] mb-8 text-center mx-auto">
-        <h1 className="mb-2 font-lato text-[48px] font-bold leading-12 tracking-[-0.6px] text-[#141938] w-full">{user.name} ¿Para quién deseas cotizar?</h1>
-        <p className="font-lato text-[16px] leading-7 tracking-[0.1px] font-normal">Selecciona la opción que se ajuste más a tus necesidades.</p>
+        <h1 className="mb-2 font-lato text-[48px] font-bold leading-12 tracking-[-0.6px] text-[#141938] w-full max-md:text-[28px] max-md:text-left">{user.name} ¿Para quién deseas cotizar?</h1>
+        <p className="font-lato text-[16px] leading-7 tracking-[0.1px] font-normal max-md:text-left">Selecciona la opción que se ajuste más a tus necesidades.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 mb-5 justify-center">
@@ -64,7 +70,7 @@ export const Plans = () => {
         }
       </div>
 
-      <div style={{ display : selectedCard != "" ? 'block' : 'none'}} className='mb-20 max-w-[985px] w-full'>
+      <div style={{ display : selectedCard != "" ? 'block' : 'none'}} className='mb-20 max-w-[985px] w-full mx-auto'>
         <Swiper
           slidesPerView={3}
           spaceBetween={0}

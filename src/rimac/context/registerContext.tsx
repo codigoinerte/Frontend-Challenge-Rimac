@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import type { selectPlanType } from "../pages/plans/types/types";
 
 type User = {
     name: string;
@@ -9,16 +10,24 @@ type User = {
     phone: string;
     age: number;
 
+    targetPeopleId: selectPlanType | "";
     isForMe?:boolean;
     planName?:string;
     planPrice?:string;
 }
 
+interface setPlanToUserParams {
+    isForMe:boolean,
+    planName:string,
+    planPrice:string,
+    targetPeopleId: selectPlanType | "";
+}
 interface registerContextProps {
     user: User;
     setUser: (user:User) => void;
-    setPlanToUser: (isForMe:boolean, planName:string, planPrice:string) => void;
+    setPlanToUser: (param:setPlanToUserParams) => void;
 }
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const RegisterContext = createContext({} as registerContextProps);
@@ -29,8 +38,8 @@ export const RegisterContextProvider = ({children}:React.PropsWithChildren) => {
 
     const setParamsUser = (user:User) => setUser(user);
 
-    const setPlanToUser = (isForMe:boolean, planName:string, planPrice:string) => {
-        setUser(user=>({...user, isForMe, planName, planPrice}));
+    const setPlanToUser = (params: setPlanToUserParams) => {
+        setUser(user=>({...user, ...params}));
     }
 
     return (<RegisterContext value={{
