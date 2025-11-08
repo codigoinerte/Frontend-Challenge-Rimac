@@ -8,11 +8,16 @@ type User = {
     document: string;
     phone: string;
     age: number;
+
+    isForMe?:boolean;
+    planName?:string;
+    planPrice?:string;
 }
 
 interface registerContextProps {
     user: User;
     setUser: (user:User) => void;
+    setPlanToUser: (isForMe:boolean, planName:string, planPrice:string) => void;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -24,9 +29,14 @@ export const RegisterContextProvider = ({children}:React.PropsWithChildren) => {
 
     const setParamsUser = (user:User) => setUser(user);
 
+    const setPlanToUser = (isForMe:boolean, planName:string, planPrice:string) => {
+        setUser(user=>({...user, isForMe, planName, planPrice}));
+    }
+
     return (<RegisterContext value={{
                     user: user,
-                    setUser: setParamsUser
+                    setUser: setParamsUser,
+                    setPlanToUser: setPlanToUser
                 }}>
                 {children}
             </RegisterContext>)
