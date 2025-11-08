@@ -15,7 +15,7 @@ export const CardPeople:React.FC<Props> = ({id, title, description, icon, onClic
     return (
         <button 
             onClick={onClick}
-            className={`shadow-[0px_1px_32px_0px_#AEACF359] pt-4 pr-6 pb-10 ps-6 rounded-3xl bg-white w-full max-w-[256px] h-auto ${selectedCard == id ? "border-3 border-[#03050F]" : "border-3 border-transparent"}`}>
+            className={`shadow-[0px_1px_32px_0px_#AEACF359] pt-4 pr-6 pb-10 ps-6 rounded-3xl bg-white w-full md:max-w-[256px] h-auto ${selectedCard == id ? "border-3 border-[#03050F]" : "border-3 border-transparent"}`}>
             <div className="w-full flex justify-end">
                     <div
                     className={`w-6 h-6 rounded-full flex items-center justify-center ${
