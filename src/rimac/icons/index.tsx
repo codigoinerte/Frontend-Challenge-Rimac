@@ -6,3 +6,4 @@ export { PersonPlus } from './PersonPlus';
 export { Check } from './Check';
 export { Home } from './Home';
 export { Clinic } from './Clinic';
+export { People } from './People';
