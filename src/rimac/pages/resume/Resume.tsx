@@ -19,13 +19,13 @@ export const Resume = () => {
                     <div className="mb-4">
                         <h2 className="font-lato font-bold text-[16px] leading-6 tracking-[0.2px] text-[#141938] mb-1">Responsable de pago</h2>
                         <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938] uppercase mb-1">{user.documentType}: {user.document}</p>
-                        <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938] uppercase">Celular: {user.phone}</p>
+                        <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938]">Celular: {user.phone}</p>
                     </div>
                     
                     <div className="mb-4">
                         <h2 className="font-lato font-bold text-[16px] leading-6 tracking-[0.2px] text-[#141938] mb-1">Plan elegido</h2>
-                        <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938] uppercase mb-1">{user.planName}: {user.document}</p>
-                        <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938] uppercase">Costo del plan: {user.planPrice}</p>
+                        <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938] mb-1">{user.planName}</p>
+                        <p className="font-lato font-normal text-[14px] leading-6 tracking-[0.1px] text-[#141938]">Costo del plan: {user.planPrice}</p>
                     </div>
 
                 </div>
