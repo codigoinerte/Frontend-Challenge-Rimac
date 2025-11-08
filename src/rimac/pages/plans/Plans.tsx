@@ -2,40 +2,28 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { RegisterContext } from "@/rimac/context/registerContext"
-import { ArrowBack, Person, PersonPlus } from "@/rimac/icons"
+import { ArrowBack } from "@/rimac/icons"
 import { use, useCallback, useEffect, useState } from "react"
 import { CardPeople, Plan } from "./components";
-import type { Plan as PlanType, PlansResponse, selectPlanType } from './types/types';
+import type { Plan as PlanType, PlansResponse, paramsPlanSelector, selectPlanType } from './types/types';
 
 import '@/rimac/styles/swiper.min.css';
 import '@/rimac/styles/pagination.min.css';
 import '@/rimac/styles/customPlans.css';
-
- const cards = [
-    {
-      id: 'para-mi',
-      title: 'Para mi',
-      description: 'Cotiza tu seguro de salud y agrega familiares si así lo deseas.',
-      icon: <Person />,
-      isSelected: false
-    },
-    {
-      id: 'para-alguien',
-      title: 'Para alguien más',
-      description: 'Realiza una cotización para uno de tus familiares o cualquier persona.',
-      icon: <PersonPlus />,
-      isSelected: false
-    }
-];
+import { cards } from './mock/target.audience';
+import { useNavigate } from 'react-router';
 
 const VITE_API = import.meta.env.VITE_API;
 
 export const Plans = () => {
+  
+
+  const navigate = useNavigate();
 
   const [plans, setPlans] = useState<PlanType[]>([])
-  const [selectedCard, setSelectedCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState<selectPlanType | ''>('');
   const [showPagination, setShowPagination] = useState(false);
-  const { user } = use(RegisterContext)
+  const { user, setPlanToUser } = use(RegisterContext)
 
   const getPlans = useCallback(async ():Promise<PlansResponse> => {
     const response = await fetch(`${VITE_API}/plans.json`);
@@ -57,6 +45,11 @@ export const Plans = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const handleAddPlan = ({ name, price }:paramsPlanSelector) => {
+    setPlanToUser(selectedCard=="para-mi", name, price);
+    navigate("/planes/resumen");
+  }
 
   return (
     <>
@@ -110,7 +103,9 @@ export const Plans = () => {
         >
           {
             plans.length > 0 &&
-            plans.map((plan) => <SwiperSlide key={plan.name} className='flex-1 h-auto!'><Plan {...plan} selectedCard={selectedCard as selectPlanType} /></SwiperSlide>)
+            plans.map((plan) => <SwiperSlide key={plan.name} className='flex-1 h-auto!'>
+                <Plan {...plan} selectedCard={selectedCard as selectPlanType} onPlanSelected={handleAddPlan}/>
+            </SwiperSlide>)
           }
         </Swiper>
          {/* Controles personalizados debajo */}
