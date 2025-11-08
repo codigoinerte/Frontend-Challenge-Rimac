@@ -6,9 +6,9 @@ interface Props{
     onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export const GoBack:React.FC<Props> = ({className, onClick}) => {
+export const GoBack:React.FC<Props> = ({className ="", onClick}) => {
     return (
-        <div className={`w-full max-w-[928px] mt-10 mb-14 ${className}`}>
+        <div className={`w-full max-w-[928px] mt-10 mb-14 px-6 ${className}`}>
             <button onClick={onClick} className="font-lato font-bold leading-5 tracking-[0.4px] text-[#4F4FFF] flex flex-row gap-2 cursor-pointer">
                 <ArrowBack color="#4F4FFF"/> Volver
             </button>
