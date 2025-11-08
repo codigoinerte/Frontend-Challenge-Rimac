@@ -1,9 +1,12 @@
 import { Separate } from "@/rimac/icons"
 import { Step } from "./Step"
 import { useLocation } from "react-router";
+import { use } from "react";
+import { RegisterContext } from "../context/registerContext";
 
 export const Stepper = () => {
 
+    const { user } = use(RegisterContext);
     const location = useLocation();
     
     return (
@@ -18,7 +21,7 @@ export const Stepper = () => {
                 <Step 
                     route="/planes/resumen" 
                     isActive={location.pathname == "/planes/resumen"} 
-                    isDisabled={location.pathname == "/planes"}
+                    isDisabled={user.planName == undefined}
                     number={2} 
                     label="Resumen" 
                     className="-ms-2"/>
