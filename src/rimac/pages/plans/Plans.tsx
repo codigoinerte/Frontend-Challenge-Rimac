@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { RegisterContext } from "@/rimac/context/registerContext"
 import { Clinic, Home, Person, PersonPlus } from "@/rimac/icons"
 import { use, useCallback, useEffect, useState } from "react"
-import { Cards } from "./components";
+import { CardPeople } from "./components";
 import type { Plan, PlansResponse } from './types/types';
 import { currencyConvert } from '@/rimac/helpers/currencyConvert';
 
@@ -64,7 +64,7 @@ export const Plans = () => {
 
       <div className="flex flex-row gap-8 mb-5">
         {
-          cards.map(card => (<Cards key={card.id} {...card} onClick={() => setSelectedCard(card.id)} selectedCard={selectedCard} />))
+          cards.map(card => (<CardPeople key={card.id} {...card} onClick={() => setSelectedCard(card.id)} selectedCard={selectedCard} />))
         }
       </div>
 

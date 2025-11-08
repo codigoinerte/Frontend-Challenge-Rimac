@@ -11,7 +11,7 @@ interface Props{
     selectedCard:string;
 }
 
-export const Cards:React.FC<Props> = ({id, title, description, icon, onClick, selectedCard}) => {
+export const CardPeople:React.FC<Props> = ({id, title, description, icon, onClick, selectedCard}) => {
     return (
         <button 
             onClick={onClick}
