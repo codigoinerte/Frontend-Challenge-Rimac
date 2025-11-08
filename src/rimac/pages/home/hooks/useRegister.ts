@@ -1,4 +1,5 @@
 import { RegisterContext } from "@/rimac/context/registerContext";
+import { calcAge } from "@/rimac/helpers/calc.age";
 import { use, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -62,6 +63,9 @@ export const useRegister = () => {
             const response = await fetch(`${VITE_API}/user.json`);
             const data:UserResponse = await response.json();
             
+
+            const age = calcAge(data.birthDay.toString());
+
             setUser({
                 name: data.name,
                 lastName: data.lastName,
@@ -69,6 +73,7 @@ export const useRegister = () => {
                 documentType,
                 document,
                 phone,
+                age
             });
 
             navigate('/planes');
