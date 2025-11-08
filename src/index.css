@@ -238,3 +238,7 @@ body{
     @apply bg-background text-foreground;
   }
 }
+
+@theme {
+  --font-lato: 'Lato', 'sans-serif';
+}
