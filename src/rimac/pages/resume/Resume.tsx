@@ -6,7 +6,7 @@ export const Resume = () => {
     const { user } = use(RegisterContext);
     return (
         <>
-            <div className="w-full max-w-[928px] m-auto px-6">
+            <div className="w-full max-w-[928px] m-auto min-md:px-6">
                 <h1 className="hidden md:block ms-0 me-auto w-full font-lato text-[#141938] text-[40px] leading-8 tracking-[-0.6px] font-bold text-left mb-12">Resumen del seguro</h1>
                 <div className="shadow-[0px_1px_24px_0px_#AEACF340] rounded-3xl py-6 px-8 bg-white">
                     <span className="text-[#141938] font-black font-lato text-[10px] leading-4 tracking-[0.8px] text-left uppercase">Precios calculados para:</span>
