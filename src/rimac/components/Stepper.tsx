@@ -4,13 +4,17 @@ import { useLocation } from "react-router";
 import { use } from "react";
 import { RegisterContext } from "../context/registerContext";
 
-export const Stepper = () => {
+interface Props{
+    className?:string;
+}
+
+export const Stepper:React.FC<Props> = ({ className }) => {
 
     const { user } = use(RegisterContext);
     const location = useLocation();
     
     return (
-        <div className="py-4 bg-[#EDEFFC] w-full flex justify-center">
+        <div className={`py-4 bg-[#EDEFFC] w-full flex justify-center ${className}`}>
             <div className="max-w-[1120px] w-full px-6 m-0 flex flex-row items-center justify-center">                
                 <Step 
                     route="/planes" 
