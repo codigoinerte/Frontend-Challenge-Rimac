@@ -59,7 +59,7 @@ export const useRegister = () => {
         }
 
         try {
-            const response = await fetch(`${VITE_API}api/user.json`);
+            const response = await fetch(`${VITE_API}/user.json`);
             const data:UserResponse = await response.json();
             
             setUser({
@@ -71,7 +71,7 @@ export const useRegister = () => {
                 phone,
             });
 
-            navigate('/plans');
+            navigate('/planes');
             
         } catch {
             toast.error('Hubo un error al registrarte, intenta de nuevo más tarde.');
