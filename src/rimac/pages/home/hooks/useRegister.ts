@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { RegisterContext } from "@/rimac/context/registerContext";
+import { use, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 type Inputs = {
     documentType: boolean | null;
@@ -7,6 +8,13 @@ type Inputs = {
     terms: boolean | null;
     politics: boolean | null;
 }
+
+export interface UserResponse {
+    name:     string;
+    lastName: string;
+    birthDay: Date;
+}
+
 
 const VITE_API = import.meta.env.VITE_API;
 
@@ -19,6 +27,8 @@ export const useRegister = () => {
         terms: null,
         politics: null,
     } as Inputs)
+
+    const { setUser } = use(RegisterContext);
     
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -46,8 +56,16 @@ export const useRegister = () => {
 
         try {
             const response = await fetch(`${VITE_API}api/user.json`);
-            const data = await response.json();
-            console.log(data);
+            const data:UserResponse = await response.json();
+            
+            setUser({
+                name: data.name,
+                lastName: data.lastName,
+                birthDay: data.birthDay,
+                documentType,
+                document,
+                phone,
+            })  
             
         } catch {
             toast.error('Hubo un error al registrarte, intenta de nuevo más tarde.');
