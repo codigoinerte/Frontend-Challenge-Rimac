@@ -15,7 +15,7 @@ export const Stepper:React.FC<Props> = ({ className }) => {
     
     return (
         <div className={`py-4 bg-[#EDEFFC] w-full flex justify-center ${className}`}>
-            <div className="max-w-[1120px] w-full px-6 m-0 flex flex-row items-center justify-center">                
+            <div className="max-w-[1120px] w-full px-6 m-0 flex flex-row items-center justify-center mx-auto">                
                 <Step 
                     route="/planes" 
                     isActive={location.pathname == "/planes"}                     
