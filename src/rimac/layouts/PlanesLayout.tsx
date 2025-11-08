@@ -16,7 +16,7 @@ export const PlanesLayout = () => {
             <GoBack onClick={() => navigate(-1)}/>
             
             {/* Body */}
-            <main className="flex-1 px-6 md:px-0">
+            <main className="flex-1 px-6 md:px-0 w-full">
                 <Outlet />
             </main>
         </div>
