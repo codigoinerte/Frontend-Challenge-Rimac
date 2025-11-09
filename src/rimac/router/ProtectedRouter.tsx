@@ -3,21 +3,16 @@ import { Navigate, useLocation } from "react-router";
 import { RegisterContext } from "../context/registerContext";
 
 export const ProtectedRouter = ({children}:PropsWithChildren) => {
-  
-    const protectedRoutes = ["/planes", "/planes/resumen"];    
+      
     const location = useLocation();
 
     const { user } = use(RegisterContext);
-    console.log({
-        name: !user.name,
-        price: !user.planPrice,
-        includes: protectedRoutes.includes(location.pathname)
-    });
-    if((!user.name || !user.planPrice) && protectedRoutes.includes(location.pathname)){
+  
+    if(user.name == undefined && location.pathname == "/planes"){
         return <Navigate to="/"/>;
     }
 
-    if(!!user.planPrice && protectedRoutes.includes(location.pathname)){
+    if(user.planPrice == undefined && location.pathname == "/planes/resumen"){
         return <Navigate to="/"/>;
     }
 
