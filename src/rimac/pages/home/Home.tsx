@@ -15,7 +15,7 @@ export const Home = () => {
                         src="/images/hero-home.png" 
                         alt="hero" 
                         title="hero"
-                        className="max-w-40 md:max-w-[480px] md:flex w-full sm:w-[350px] lg:w-auto rounded-3xl h-auto self-start flex-1"
+                        className="max-[406px]:max-w-[125px] max-w-40 md:max-w-[480px] md:flex w-full sm:w-[350px] lg:w-auto rounded-3xl h-auto self-start flex-1"
                     />
                 </div>
 
