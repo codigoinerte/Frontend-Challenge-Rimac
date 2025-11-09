@@ -73,9 +73,11 @@ export const useRegister = () => {
                 documentType,
                 document,
                 phone,
-                age
+                age,
+                targetPeopleId: "",
             });
 
+           
             navigate('/planes');
             
         } catch {
