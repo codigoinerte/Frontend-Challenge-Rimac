@@ -24,7 +24,6 @@ export const Plans = () => {
 
   const [plans, setPlans] = useState<PlanType[]>([])
   const [selectedCard, setSelectedCard] = useState<selectPlanType | ''>(user.targetPeopleId || '');
-  const [showPagination, setShowPagination] = useState(false);
 
   const getPlans = useCallback(async ():Promise<PlansResponse> => {
     const response = await fetch(`${VITE_API}/plans.json`);
@@ -100,12 +99,12 @@ export const Plans = () => {
                 slidesPerView: 3
               }
   
-          }}    
-          onSwiper={(swiper) => {
-            console.log(swiper.pagination);
-            setShowPagination(swiper.pagination.bullets.length >0)
           }}
-          onSlideChange={() => console.log('Slide cambiado')}          
+          
+          onResize={()=> {
+            // console.log(e.params.pagination?.formatFractionCurrent());
+            // console.log(e)
+          }}
         >
           {
             plans.length > 0 &&
@@ -115,19 +114,15 @@ export const Plans = () => {
           }
         </Swiper>
          {/* Controles personalizados debajo */}
-        {
-          showPagination && (
-            <div className="custom-controls">
-              <button className="custom-prev">
-                <ArrowBack width={32} height={32}/>
-              </button>
-              <div className="custom-pagination font-lato"></div>
-              <button className="custom-next rotate-180">
-                <ArrowBack width={32} height={32}/>
-              </button>
-            </div>
-          )
-        }
+          <div className="custom-controls">
+            <button className="custom-prev">
+              <ArrowBack width={32} height={32}/>
+            </button>
+            <div className="custom-pagination font-lato"></div>
+            <button className="custom-next rotate-180">
+              <ArrowBack width={32} height={32}/>
+            </button>
+          </div>
         
       </div>
     </>
