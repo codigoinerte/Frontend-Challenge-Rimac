@@ -39,17 +39,16 @@
   color: #A9AFD9
 }
 
-.swiper-wrapper{
+.swiper-wrapper .swiper-slide{
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.swiper-wrapper .swiper-slide:nth-child(1){
   padding-left: 24px;
+}
+.swiper-wrapper .swiper-slide:last-of-type{
   padding-right: 24px;
 }
 .custom-controls:has(.swiper-button-lock){
   display: none;
-}
-
-@media(max-width:768px){
-  .swiper-wrapper{
-    padding-left: 24px;
-    padding-right: 24px;
-  }
 }

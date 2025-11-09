@@ -19,7 +19,7 @@ export const SwiperPlan:React.FC<Props> = ({ plans, selectedCard, handleAddPlan}
     <>
         <Swiper
           slidesPerView={3}
-          spaceBetween={32}
+          spaceBetween={0}
           navigation={{
             prevEl: '.custom-prev',
             nextEl: '.custom-next',
@@ -29,28 +29,27 @@ export const SwiperPlan:React.FC<Props> = ({ plans, selectedCard, handleAddPlan}
             el: '.custom-pagination',
           }}
           modules={[Pagination, Navigation]}
-          className="py-10!"
-          direction='horizontal'
+          className="py-10!"          
           breakpoints={{
              
               // when window width is >= 320px
               0: {
-                slidesPerView: 1
+                slidesPerView: 'auto',
+                spaceBetween: 0,
+                centeredSlides: true,
               },             
               // when window width is >= 640px
               768: {
-                slidesPerView: 2
+                slidesPerView: 'auto',
+                spaceBetween: 0,
+                centeredSlides: false,
               },
               // when window width is >= 991px
               991: {
-                slidesPerView: 3
+                slidesPerView: 3,
+                centeredSlides: false,
               }
   
-          }}
-          
-          onResize={()=> {
-            // console.log(e.params.pagination?.formatFractionCurrent());
-            // console.log(e)
           }}
         >
           {
