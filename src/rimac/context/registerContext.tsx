@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import type { selectPlanType } from "../pages/plans/types/types";
 
-type User = {
+export type User = {
     name: string;
     lastName: string;
     birthDay: Date;
