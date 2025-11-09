@@ -1,61 +1,11 @@
-import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import { RegisterContext } from "@/rimac/context/registerContext"
-import { ArrowBack } from "@/rimac/icons"
-import { use, useCallback, useEffect, useState } from "react"
-import { CardPeople, Plan } from "./components";
-import type { Plan as PlanType, PlansResponse, paramsPlanSelector, selectPlanType } from './types/types';
-
-import '@/rimac/styles/swiper.min.css';
-import '@/rimac/styles/pagination.min.css';
-import '@/rimac/styles/customPlans.css';
+import { CardPeople, SwiperPlan } from "./components";
 import { cards } from './mock/target.audience';
-import { useNavigate } from 'react-router';
-
-const VITE_API = import.meta.env.VITE_API;
+import { usePlan } from './hooks/usePlan';
 
 export const Plans = () => {
   
-
-  const navigate = useNavigate();
-
-  const { user, setPlanToUser } = use(RegisterContext)
-
-  const [plans, setPlans] = useState<PlanType[]>([])
-  const [selectedCard, setSelectedCard] = useState<selectPlanType | ''>(user.targetPeopleId || '');
-
-  const getPlans = useCallback(async ():Promise<PlansResponse> => {
-    const response = await fetch(`${VITE_API}/plans.json`);
-    const data = await response.json();
-    return data;    
-  }, []);
-
-
-  useEffect(() => {
-    (async ()=> {
-      try {
-        const plans = await getPlans();
-        setPlans(plans.list.filter((plan) => plan.age >= user.age));
-      } catch {
-        console.log("Fallo en la petición de planes");
-      }
-      
-    })();
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const handleAddPlan = ({ name, price }:paramsPlanSelector) => {
-    setPlanToUser({
-      isForMe: selectedCard=="para-mi", 
-      planName: name,
-      planPrice: price,
-      targetPeopleId: selectedCard,
-    });
-    navigate("/planes/resumen");
-  }
-
+  const { user, plans, selectedCard, setSelectedCard, handleAddPlan} = usePlan();
+ 
   return (
     <>
       <div className="max-w-[650px] mb-8 text-center mx-auto">
@@ -64,66 +14,11 @@ export const Plans = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 mb-5 justify-center">
-        {
-          cards.map(card => (<CardPeople key={card.id} {...card} onClick={() => setSelectedCard(card.id)} selectedCard={selectedCard} />))
-        }
+        { cards.map(card => (<CardPeople key={card.id} {...card} onClick={() => setSelectedCard(card.id)} selectedCard={selectedCard} />)) }
       </div>
 
       <div style={{ display : selectedCard != "" ? 'block' : 'none'}} className='mb-20 max-w-[985px] md:w-full w-auto mx-auto max-md:-ms-6 max-md:-me-6'>
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={32}
-          navigation={{
-            prevEl: '.custom-prev',
-            nextEl: '.custom-next',
-          }}
-          pagination={{
-            type: "fraction",
-            el: '.custom-pagination',
-          }}
-          modules={[Pagination, Navigation]}
-          className="py-10!"
-          direction='horizontal'
-          breakpoints={{
-             
-              // when window width is >= 320px
-              0: {
-                slidesPerView: 1
-              },             
-              // when window width is >= 640px
-              768: {
-                slidesPerView: 2
-              },
-              // when window width is >= 991px
-              991: {
-                slidesPerView: 3
-              }
-  
-          }}
-          
-          onResize={()=> {
-            // console.log(e.params.pagination?.formatFractionCurrent());
-            // console.log(e)
-          }}
-        >
-          {
-            plans.length > 0 &&
-            plans.map((plan) => <SwiperSlide key={plan.name} className='flex-1 h-auto!'>
-                <Plan {...plan} selectedCard={selectedCard as selectPlanType} onPlanSelected={handleAddPlan}/>
-            </SwiperSlide>)
-          }
-        </Swiper>
-         {/* Controles personalizados debajo */}
-          <div className="custom-controls">
-            <button className="custom-prev">
-              <ArrowBack width={32} height={32}/>
-            </button>
-            <div className="custom-pagination font-lato"></div>
-            <button className="custom-next rotate-180">
-              <ArrowBack width={32} height={32}/>
-            </button>
-          </div>
-        
+        <SwiperPlan plans={plans} selectedCard={selectedCard} handleAddPlan={handleAddPlan}/>
       </div>
     </>
   )
