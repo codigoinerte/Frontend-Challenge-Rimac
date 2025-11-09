@@ -52,7 +52,7 @@ export const Form = () => {
                 <Input
                     id="phone"
                     type="tel"
-                    defaultValue="5130216147"
+                    defaultValue="51902161470"
                     name='phone'
                     className="border-0 p-0 h-auto text-base focus-visible:ring-0 shadow-none text-[#03050F] text-[16px] leading-6"
                 />
