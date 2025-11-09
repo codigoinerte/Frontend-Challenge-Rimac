@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { Home, Plans, Resume } from "../pages";
 import { PlanesLayout } from "../layouts/PlanesLayout";
+import { ProtectedRouter } from "./ProtectedRouter";
 
 export const appRouter = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ export const appRouter = createBrowserRouter([
     element: <Home />,
   },{
     path: "/planes/",
-    element: <PlanesLayout/>,
+    element: <ProtectedRouter><PlanesLayout/></ProtectedRouter>,
     children: [
       {
         index: true,        
