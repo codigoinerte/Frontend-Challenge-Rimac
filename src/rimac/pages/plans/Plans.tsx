@@ -70,10 +70,10 @@ export const Plans = () => {
         }
       </div>
 
-      <div style={{ display : selectedCard != "" ? 'block' : 'none'}} className='mb-20 max-w-[985px] w-full mx-auto'>
+      <div style={{ display : selectedCard != "" ? 'block' : 'none'}} className='mb-20 max-w-[985px] md:w-full w-auto mx-auto max-md:-ms-6 max-md:-me-6'>
         <Swiper
           slidesPerView={3}
-          spaceBetween={0}
+          spaceBetween={32}
           navigation={{
             prevEl: '.custom-prev',
             nextEl: '.custom-next',
@@ -83,7 +83,7 @@ export const Plans = () => {
             el: '.custom-pagination',
           }}
           modules={[Pagination, Navigation]}
-          className="flex px-10! py-10!"
+          className="py-10!"
           direction='horizontal'
           breakpoints={{
              

@@ -14,7 +14,7 @@ export const Plan:React.FC<PlanTypeProps> = ({ selectedCard, price, name, descri
     const priceOriginal = `${currencyConvert(price)} al mes`
     const priceFinal = selectedCard == "para-alguien" ? `${currencyConvert(priceWithDiscount)} al mes`: priceOriginal;
     return (
-        <div key={name} className='shadow-[0px_1px_32px_0px_#AEACF359] px-8 pt-[68px] pb-6 rounded-3xl md:max-w-[288px] w-[288px] flex-1 h-full flex flex-col'>
+        <div key={name} className='shadow-[0px_1px_32px_0px_#AEACF359] px-8 pt-[68px] pb-6 rounded-3xl w-[288px] flex-1 h-full flex flex-col'>
             <div className='flex flex-row justify-between relative'>
                 {
                     name.includes("Clínica") && (

@@ -1,6 +1,3 @@
-.swiper-wrapper{
-    gap:32px;
-}
 
 .custom-controls {
   display: flex;
@@ -40,4 +37,16 @@
   opacity: 0.5;
   cursor: not-allowed;
   color: #A9AFD9
+}
+
+.swiper-wrapper{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media(max-width:768px){
+  .swiper-wrapper{
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
