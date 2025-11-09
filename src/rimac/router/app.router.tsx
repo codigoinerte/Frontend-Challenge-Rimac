@@ -1,9 +1,15 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, createHashRouter } from "react-router";
 import { Home, Plans, Resume } from "../pages";
-import { PlanesLayout } from "../layouts/PlanesLayout";
 import { ProtectedRouter } from "./ProtectedRouter";
+import { lazy } from "react";
 
-export const appRouter = createBrowserRouter([
+const VITE_HASH_ROUTER = import.meta.env.VITE_HASH_ROUTER; 
+
+const createRouter = VITE_HASH_ROUTER == "true" ? createHashRouter : createBrowserRouter;
+
+const PlanesLayout = lazy(()=> import('../layouts/PlanesLayout'))
+
+export const appRouter = createRouter([
   {
     path: "/",
     element: <Home />,
