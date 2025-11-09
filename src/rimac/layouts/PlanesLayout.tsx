@@ -1,7 +1,7 @@
 import { Outlet } from "react-router"
 import { GoBack, Header, Stepper, StepperMobile } from "../components"
 
-export const PlanesLayout = () => {
+const PlanesLayout = () => {
 
     return (
         <div className="flex flex-col flex-1 w-full justify-center items-center">
@@ -21,3 +21,5 @@ export const PlanesLayout = () => {
         </div>
     )
 }
+
+export default PlanesLayout;
